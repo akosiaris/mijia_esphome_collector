@@ -1,0 +1,70 @@
+substitutions:
+  devicename: mijiacollector
+  mqtt_collectd_prefix: collectd
+  mqtt_broker: 192.168.1.4
+
+esphome:
+  name: ${devicename}
+
+esp32:
+  board: m5stack-atom
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+  level: INFO
+
+# Enable Home Assistant API
+#api:
+#  password: !secret api_password
+
+ota:
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: !secret fallback_ssid
+    password: !secret fallback_password
+
+captive_portal:
+
+esp32_ble_tracker:
+  scan_parameters:
+    active: false
+
+xiaomi_ble:
+
+mqtt:
+  broker: $mqtt_broker
+  discovery: false
+
+packages:
+  area_1: !include
+    file: common/mijia_package.yaml
+    vars:
+      area: !secret area_1_name
+      area_upper: !secret area_1_upper_name
+      mac_address: !secret area_1_mac_address
+  area_2: !include
+    file: common/mijia_package.yaml
+    vars:
+      area: !secret area_2_name
+      area_upper: !secret area_2_upper_name
+      mac_address: !secret area_2_mac_address
+  area_3: !include
+    file: common/mijia_package.yaml
+    vars:
+      area: !secret area_3_name
+      area_upper: !secret area_3_upper_name
+      mac_address: !secret area_3_mac_address
+  area_4: !include
+    file: common/mijia_package.yaml
+    vars:
+      area: !secret area_4_name
+      area_upper: !secret area_4_upper_name
+      mac_address: !secret area_4_mac_address

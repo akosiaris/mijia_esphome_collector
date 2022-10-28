@@ -1,0 +1,40 @@
+sensor:
+  - platform: pvvx_mithermometer
+    mac_address: $mac_address
+    temperature:
+      id: ${area}_temperature
+    humidity:
+      id: ${area}_humidity
+    battery_level:
+      id: ${area}_battery_level
+    battery_voltage:
+      id: ${area}_battery_voltage
+    signal_strength:
+      id: ${area}_signal_strength
+
+text_sensor:
+  - platform: template
+    name: "${area_upper} Temperature"
+    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/temperature-${area}
+    lambda: |-
+      return { "N:" + esphome::to_string(id(${area}_temperature).state) };
+  - platform: template
+    name: "${area_upper} Humidity"
+    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/humidity-${area}
+    lambda: |-
+      return { "N:" + esphome::to_string(id(${area}_humidity).state) };
+  - platform: template
+    name: "${area_upper} Battery Level"
+    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/percent-${area}_battery
+    lambda: |-
+      return { "N:" + esphome::to_string(id(${area}_battery_level).state) };
+  - platform: template
+    name: "${area_upper} Battery Voltage"
+    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/voltage-${area}_battery
+    lambda: |-
+      return { "N:" + esphome::to_string(id(${area}_battery_voltage).state) };
+  - platform: template
+    name: "${area_upper} Signal Power"
+    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/signal_power-${area}
+    lambda: |-
+      return { "N:" + esphome::to_string(id(${area}_signal_strength).state) };
