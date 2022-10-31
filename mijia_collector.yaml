@@ -15,6 +15,21 @@ esp32:
 logger:
   level: INFO
 
+# We are going to run on battery, let's be conservative.
+deep_sleep:
+  run_duration: 1min
+  sleep_duration: 10min
+
+# Enable our RBG LED
+light:
+  - platform: fastled_clockless
+    chipset: SK6812
+    pin: 27
+    num_leds: 1
+    rgb_order: GRB
+    id: status_led
+    name: Light
+
 # Enable Home Assistant API
 #api:
 #  password: !secret api_password
