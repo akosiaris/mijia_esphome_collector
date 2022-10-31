@@ -16,25 +16,30 @@ text_sensor:
   - platform: template
     name: "${area_upper} Temperature"
     state_topic: $mqtt_collectd_prefix/$devicename/mqtt/temperature-${area}
+    retain: false
     lambda: |-
       return { "N:" + esphome::to_string(id(${area}_temperature).state) };
   - platform: template
     name: "${area_upper} Humidity"
     state_topic: $mqtt_collectd_prefix/$devicename/mqtt/humidity-${area}
+    retain: false
     lambda: |-
       return { "N:" + esphome::to_string(id(${area}_humidity).state) };
   - platform: template
     name: "${area_upper} Battery Level"
     state_topic: $mqtt_collectd_prefix/$devicename/mqtt/percent-${area}_battery
+    retain: false
     lambda: |-
       return { "N:" + esphome::to_string(id(${area}_battery_level).state) };
   - platform: template
     name: "${area_upper} Battery Voltage"
     state_topic: $mqtt_collectd_prefix/$devicename/mqtt/voltage-${area}_battery
+    retain: false
     lambda: |-
       return { "N:" + esphome::to_string(id(${area}_battery_voltage).state) };
   - platform: template
     name: "${area_upper} Signal Power"
     state_topic: $mqtt_collectd_prefix/$devicename/mqtt/signal_power-${area}
+    retain: false
     lambda: |-
       return { "N:" + esphome::to_string(id(${area}_signal_strength).state) };
