@@ -27,13 +27,13 @@ text_sensor:
       return { "N:" + esphome::to_string(id(${area}_humidity).state) };
   - platform: template
     name: "${area_upper} Battery Level"
-    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/percent-${area}_battery
+    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/percent-${area}
     retain: false
     lambda: |-
       return { "N:" + esphome::to_string(id(${area}_battery_level).state) };
   - platform: template
     name: "${area_upper} Battery Voltage"
-    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/voltage-${area}_battery
+    state_topic: $mqtt_collectd_prefix/$devicename/mqtt/voltage-${area}
     retain: false
     lambda: |-
       return { "N:" + esphome::to_string(id(${area}_battery_voltage).state) };
