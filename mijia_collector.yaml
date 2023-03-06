@@ -1,8 +1,3 @@
-substitutions:
-  devicename: mijiacollector
-  mqtt_collectd_prefix: collectd
-  mqtt_broker: 192.168.1.4
-
 esphome:
   name: ${devicename}
 
@@ -79,29 +74,3 @@ binary_sensor:
 mqtt:
   broker: $mqtt_broker
   discovery: false
-
-packages:
-  area_1: !include
-    file: common/mijia_package.yaml
-    vars:
-      area: !secret area_1_name
-      area_upper: !secret area_1_upper_name
-      mac_address: !secret area_1_mac_address
-  area_2: !include
-    file: common/mijia_package.yaml
-    vars:
-      area: !secret area_2_name
-      area_upper: !secret area_2_upper_name
-      mac_address: !secret area_2_mac_address
-  area_3: !include
-    file: common/mijia_package.yaml
-    vars:
-      area: !secret area_3_name
-      area_upper: !secret area_3_upper_name
-      mac_address: !secret area_3_mac_address
-  area_4: !include
-    file: common/mijia_package.yaml
-    vars:
-      area: !secret area_4_name
-      area_upper: !secret area_4_upper_name
-      mac_address: !secret area_4_mac_address

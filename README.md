@@ -10,8 +10,8 @@ configuration
 
 Requirements:
 
-* An m5stack atom lite
-* 4 Mi Jia LYWSD03MMC Mi Jia thermometers/hygrometers running pvvx firmware
+* One (or more) m5stack atom lite
+* 1 (or more) Mi Jia LYWSD03MMC Mi Jia thermometers/hygrometers running pvvx firmware
 * An esphome installation
 
 ## How to
@@ -32,4 +32,14 @@ area_1_mac_address: "AB:CD:EF:01:23:45"
 ...
 ```
 
-Amend to your will, and make sure you define 4 areas.
+There is an example\_collector.yaml file to help you. There is an explicit
+assumption that each "area" has a 1:1 relationship with a LYWSD03MMC. What's
+not explicit is what the name of the areas are, allowing you to split e.g. a
+room into as many areas as you want
+
+### Compile and use
+
+```
+$ docker-compose up -d
+$ docker-compose exec esphome esphome run example_collector.yaml
+```
